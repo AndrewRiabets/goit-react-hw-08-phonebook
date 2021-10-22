@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+  font-size: 25px;
+}
+
+body {
+  background-color: rgb(149, 255, 206);
+}
+
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+}
