@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
 import style from './ContactForm.module.css';
+import contatsActions from '../../redux/Phonebook/phonebook-actions';
+import { v4 as uuidv4 } from 'uuid';
 
-export default function ContactForm({ onSubmit }) {
+function ContactForm({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -14,7 +17,11 @@ export default function ContactForm({ onSubmit }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const data = { name, number };
+    const data = {
+      name: name,
+      number: number,
+      id: uuidv4(),
+    };
     onSubmit(data);
     setName('');
     setNumber('');
@@ -56,3 +63,8 @@ export default function ContactForm({ onSubmit }) {
     </div>
   );
 }
+const mapDispatchToProps = dispatch => ({
+  onSubmit: text => dispatch(contatsActions.addContact(text)),
+});
+
+export default connect(null, mapDispatchToProps)(ContactForm);
