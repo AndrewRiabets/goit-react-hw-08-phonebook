@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import phonebookActions from '../../redux/Phonebook/phonebook-actions';
+import { changeFilter } from '../../redux/Phonebook/phonebook-actions';
 import style from './Filter.module.css';
 
-function Filter({ filter, onChange }) {
+function Filter({ filter, changeFilter }) {
   return (
     <label>
       Find contacts by name:
@@ -11,18 +11,16 @@ function Filter({ filter, onChange }) {
         type="text"
         name="filter"
         value={filter}
-        onChange={onChange}
+        onChange={e => changeFilter(e.currentTarget.value)}
       />
     </label>
   );
 }
 
-const mapStateToProps = state => ({
-  value: state.contacts.filter,
-});
+const mapStateToProps = ({ contacts: { filter } }) => ({ filter: filter });
 
 const mapDispatchToProps = dispatch => ({
-  onChange: e => dispatch(phonebookActions.changeFilter(e.target.value)),
+  changeFilter: value => dispatch(changeFilter(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

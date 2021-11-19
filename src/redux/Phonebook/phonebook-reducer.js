@@ -1,28 +1,27 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import actions from './phonebook-actions';
+import { changeFilter } from './phonebook-actions';
+import {
+  fetchContacts,
+  deleteContact,
+  addContact,
+} from '../Phonebook/contacts-operations';
 
-const defaultPhonebook = [
-  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-];
-
-export const items = createReducer(defaultPhonebook, {
-  [actions.addContact]: (state, { payload }) => {
+export const items = createReducer([], {
+  [fetchContacts.fulfilled]: (_, { payload }) => payload,
+  [addContact.fulfilled]: (state, { payload }) => {
+    console.log(payload);
     if (state.some(({ name }) => name === payload.name)) {
-      alert(`Sorry, contact is already in contacts list`);
+      alert(`Sorry, ${payload.name} is already in contacts list`);
       return state;
     }
     return [payload, ...state];
   },
-  [actions.deleteContact]: (state, { payload }) =>
+  [deleteContact.fulfilled]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
-
-export const filter = createReducer('', {
-  [actions.changeFilter]: (_, { payload }) => payload,
+const filter = createReducer('', {
+  [changeFilter]: (_, { payload }) => payload,
 });
 
 // const items = (state = [], { type, payload }) => {
@@ -50,8 +49,20 @@ export const filter = createReducer('', {
 //       return state;
 //   }
 // };
+export const loading = createReducer(false, {
+  [fetchContacts.pending]: () => true,
+  [fetchContacts.fulfilled]: () => false,
+  [fetchContacts.rejected]: () => false,
+  [addContact.pending]: () => true,
+  [addContact.fulfilled]: () => false,
+  [addContact.rejected]: () => false,
+  [deleteContact.pending]: () => true,
+  [deleteContact.fulfilled]: () => false,
+  [deleteContact.rejected]: () => false,
+});
 
 export default combineReducers({
   items,
   filter,
+  loading,
 });
