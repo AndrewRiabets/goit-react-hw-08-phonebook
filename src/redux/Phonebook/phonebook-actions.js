@@ -18,31 +18,3 @@ export const deleteContactSuccess = createAction(
 export const deleteContactError = createAction('contacts/deleteContactError');
 
 export const changeFilter = createAction('phonebook/changeFilter');
-// const addContact = createAction('contacts/add', text => ({
-//   payload: {
-//     id: uuidv4(),
-//     ...text,
-//   },
-// }));
-// const deleteContact = createAction('contacts/delete');
-// const changeFilter = createAction('contacts/filteredContacts');
-
-// const addContact = text => ({
-//   type: types.ADD,
-//   payload: {
-//     id: uuidv4(),
-//     ...text,
-//   },
-// });
-
-// const deleteContact = contactId => ({
-//   type: types.DELETE,
-//   payload: contactId,
-// });
-
-// const changeFilter = value => ({
-//   type: types.FILTERED_CONTACTS,
-//   payload: value,
-// });
-
-// export default { addContact, deleteContact, changeFilter };

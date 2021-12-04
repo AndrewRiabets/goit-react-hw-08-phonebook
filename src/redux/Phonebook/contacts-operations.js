@@ -6,7 +6,7 @@ import {
   deleteContactsAPI,
 } from '../../services/phonebook-api';
 
-axios.defaults.baseURL = 'https://61978bf75953f10017d23de7.mockapi.io/api/';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
