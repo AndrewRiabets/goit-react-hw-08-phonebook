@@ -2,17 +2,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/Auth';
 
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
-
 export default function RegisterView() {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -41,37 +30,58 @@ export default function RegisterView() {
   };
 
   return (
-    <div>
-      <h1>Страница регистрации</h1>
+    <div className="container col-xl-5 py-5">
+      <div className="row align-items-center py-5">
+        <form
+          onSubmit={handleSubmit}
+          autoComplete="off"
+          className="p-md-5 border bg-light"
+        >
+          <h1 className="h3 mb-3 fw-normal">Зарегистрироваться</h1>
+          <div className="form-floating mb-3">
+            <input
+              id="floatingName"
+              className="form-control"
+              type="text"
+              name="name"
+              value={name}
+              onChange={handleChange}
+              placeholder="Barack Obama"
+            />
+            <label for="floatingName">Имя</label>
+          </div>
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Имя
-          <input type="text" name="name" value={name} onChange={handleChange} />
-        </label>
+          <div className="form-floating mb-3">
+            <input
+              className="form-control"
+              id="floatingInput"
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="barackobama@mail.com"
+            />
+            <label>Почта</label>
+          </div>
 
-        <label style={styles.label}>
-          Почта
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
+          <div className="form-floating mb-3">
+            <input
+              className="form-control"
+              id="floatingPassword"
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Пароль"
+            />
+            <label for="floatingPassword">Пароль</label>
+          </div>
 
-        <label style={styles.label}>
-          Пароль
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-
-        <button type="submit">Зарегистрироваться</button>
-      </form>
+          <button className="w-100 btn btn-lg btn-primary" type="submit">
+            Зарегистрироваться
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

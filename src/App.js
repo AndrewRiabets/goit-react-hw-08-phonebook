@@ -1,16 +1,22 @@
 import './App.css';
-import { useEffect, Suspense } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Container from './Container/Container';
 import { Switch } from 'react-router-dom';
-import HomeView from './views/HomeView';
-import RegisterView from './views/RegisterView';
-import LoginView from './views/LoginView';
-import ContactsView from './views/ContactsView';
+// import HomeView from './views/HomeView';
+// import RegisterView from './views/RegisterView';
+// import LoginView from './views/LoginView';
+// import ContactsView from './views/ContactsView';
 import AppBar from './Components/AppBar';
 import { authOperations, authSelectors } from './redux/Auth';
 import PrivateRoute from './Components/UserMenu/PrivateRoute';
 import PublicRoute from './Components/UserMenu/PublicRoute';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
+const ContactsView = lazy(() => import('./views/ContactsView'));
+const HomeView = lazy(() => import('./views/HomeView'));
+const RegisterView = lazy(() => import('./views/RegisterView'));
+const LoginView = lazy(() => import('./views/LoginView'));
 
 export default function App() {
   const dispatch = useDispatch();

@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+// import './bootstrap-5.1.3-dist/css/bootstrap.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 // import 'node_modules/modern-normalize/modern-normalize.css';
 // import 'modern-normalize/modern-normalize.css';
 
